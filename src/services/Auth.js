@@ -3,7 +3,7 @@ const API = 'https://autumn-delicate-wilderness.glitch.me/v1/auth';
 console.log (API)
 export class Auth {
     static async register(email, password) {
-        const res = await fetch("http://localhost:5000/v1/auth/register", {
+        const res = await fetch(`${API}/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),

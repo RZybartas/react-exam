@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { Auth } from '../../services/Auth';
 import { Button } from '../../ui/Buttons';
-import Input from '../../ui/Input';
+import { Container, FormContent } from '../../ui/Containers';
+
+import { PageTitle } from '../../ui/Headings';
+import { Inputs } from '../../ui/Inputs';
+import { Labels } from '../../ui/Labels';
 
 
-
-const StyledDiv = styled.div`
-width: 250px;
-margin: 20% auto;
-align-items: center;
-`
 export const Register = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -44,20 +41,25 @@ export const Register = () => {
 
     return (
 
-        <StyledDiv>
-            <h2>Register</h2>
+        <Container>
+            <PageTitle>Register</PageTitle>
             <form onSubmit={handleSubmit}>
-                <label htmlFor='email'>Email:</label>
-                <input  name='email'onChange={onEmailChange} required />
-                <label htmlFor='password'>Password:</label>
-                <input  name='password' onChange={onPasswordChange} required />
+                <FormContent>
+                    <Labels htmlFor='email'>Email:</Labels>
+                    <Inputs name='email'onChange={onEmailChange} required />
+                </FormContent>
+                <FormContent>
+                <Labels htmlFor='password'>Password:</Labels>
+                <Inputs name='password' onChange={onPasswordChange} required />
+                </FormContent>
+
                 <div style={{display: 'flex', justifyContent: 'center', margin: '10px 0'}}>
                     <Button type='submit'>Add</Button>
                 </div>
 
             </form>
             <div style={{ color: 'red'}}>{error}</div>
-        </StyledDiv>
+        </Container>
     )
 };
 
