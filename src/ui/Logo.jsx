@@ -1,13 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import { LogoTitle } from './Headings';
 
-const StyledH1 = styled.h1`
-color: #fff;
-font-size: 40px;
-`
+
 
 const Logo = () => {
-  return <StyledH1>Skills</StyledH1>;
+  return <LogoTitle>Skills</LogoTitle>;
 };
 
 export default Logo;
