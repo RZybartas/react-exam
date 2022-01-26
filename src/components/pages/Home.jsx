@@ -35,7 +35,7 @@ export const Home = () => {
     }
     return (
         <>
-        <PageTitle>Skills</PageTitle>
+        <PageTitle>Your Skills</PageTitle>
         <Wrapper>
             {
                 skills.map((skill) => (
