@@ -10,3 +10,12 @@ color: #2980b9;
 width: 80px;
 cursor: pointer;
 `
+
+export const NavButtons = styled.button`
+background-color: #2980b9;
+border: none;
+color: #fff;
+font-size: 25px;
+margin-right: 30px;
+text-decoration: none;
+`

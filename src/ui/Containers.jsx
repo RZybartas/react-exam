@@ -16,3 +16,17 @@ justify-content: space-between;
 align-items: center;
 padding: 0 10px;
 `
+
+export const NavContainer = styled.div`
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+`
+
+export const Wrapper = styled.div`
+width: 80%;
+margin: 40px auto;
+background-color: #2980b9;
+
+`

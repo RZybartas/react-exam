@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Auth } from '../../services/Auth';
+import { Api } from '../../services/Api';
 import { Button } from '../../ui/Buttons';
 import { Container, FormContent } from '../../ui/Containers';
 
-import { PageTitle } from '../../ui/Headings';
+import { Title } from '../../ui/Headings';
 import { Inputs } from '../../ui/Inputs';
 import { Labels } from '../../ui/Labels';
 
@@ -27,7 +27,7 @@ export const Register = () => {
         e.preventDefault();
         if (!email || !password) return;
 
-        const res = await Auth.register(email, password);
+        const res = await Api.register(email, password);
         console.log(res);
         if (res.err) {
             setError(res.err);
@@ -42,7 +42,7 @@ export const Register = () => {
     return (
 
         <Container>
-            <PageTitle>Register</PageTitle>
+            <Title>Sign Up</Title>
             <form onSubmit={handleSubmit}>
                 <FormContent>
                     <Labels htmlFor='email'>Email:</Labels>
@@ -54,7 +54,7 @@ export const Register = () => {
                 </FormContent>
 
                 <div style={{display: 'flex', justifyContent: 'center', margin: '10px 0'}}>
-                    <Button type='submit'>Add</Button>
+                    <Button type='submit'>Sign Up</Button>
                 </div>
 
             </form>

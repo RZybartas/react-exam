@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AuthContext } from "./hooks/useAuth";
-import { Auth } from "../services/Auth";
+import { Api } from "../services/Api";
 
 const getEmail = (token) => { 
     let email = null;
@@ -24,7 +24,7 @@ export const AuthProvider = ({children}) => {
     });
 
     const login = async (email, password) => {
-        const res = await Auth.login(email, password);
+        const res = await Api.login(email, password);
 
         if (res.error) {
             console.error(res.error);

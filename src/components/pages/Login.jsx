@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../../ui/Buttons';
 import { Container, FormContent } from '../../ui/Containers';
-import { PageTitle } from '../../ui/Headings';
+import { Title } from '../../ui/Headings';
 import { Inputs } from '../../ui/Inputs';
 import { Labels } from '../../ui/Labels';
 import { useAuth } from '../hooks/useAuth';
@@ -32,9 +32,9 @@ export const Login = () => {
 
 
     return (
-
+        
         <Container>
-            <PageTitle>Login</PageTitle>
+            <Title>Login</Title>
             <form onSubmit={handleSubmit}>
                 <FormContent>
                     <Labels htmlFor='email'>Email:</Labels>
@@ -45,7 +45,7 @@ export const Login = () => {
                     <Inputs  name='password' onChange={onPasswordChange} required />
                 </FormContent>
                 <div style={{display: 'flex', justifyContent: 'center', margin: '10px 0'}}>
-                    <Button type='submit'>Add</Button>
+                    <Button type='submit'>Log In</Button>
                 </div>
 
             </form>
