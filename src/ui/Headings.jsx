@@ -17,3 +17,14 @@ text-align: center;
 padding: 20px;
 color: #fff;
 `
+export const CardTitle =styled.h4`
+margin: 20px 0;
+font-size: 25px;
+text-align: center;
+color: #2980b9;
+`
+export const CardParagraph = styled.p`
+font-size: 20px;
+text-align: center;
+color: #2980b9;
+`

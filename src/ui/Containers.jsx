@@ -28,5 +28,11 @@ export const Wrapper = styled.div`
 width: 80%;
 margin: 40px auto;
 background-color: #2980b9;
+height: 100vh;
+border-radius: 30px;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-gap: 10px;
+justify-items: center;
 
 `

@@ -1,12 +1,16 @@
 
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Api } from '../../services/Api';
+import { Card } from '../../ui/Card';
 import { Wrapper } from '../../ui/Containers';
-import { PageTitle } from '../../ui/Headings';
+import { CardParagraph, CardTitle, PageTitle } from '../../ui/Headings';
 import { useAuth } from '../hooks/useAuth';
 
 export const Home = () => {
     const [skills, setSkills] = useState();
+    const {id} = useParams();
+    console.log(id);
     const {token} = useAuth();
 
     const fetchSkills = async () => {
@@ -20,15 +24,22 @@ export const Home = () => {
     }, []);
 
     if (!skills) {
-        return <div>Loading...</div>
+        return <Wrapper><div>Loading...</div></Wrapper>
     } if (skills.length === 0) {
-        <div>You don't have skills added yet !</div>
+        return <Wrapper><div>You don't have skills added yet !</div></Wrapper>
     }
     return (
         <>
         <PageTitle>Skills</PageTitle>
         <Wrapper>
-            dgdsgt
+            {
+                skills.map((skill) => (
+                    <Card key={skill.id}>
+                        <CardTitle>{skill.title}</CardTitle>
+                        <CardParagraph>{skill.description}</CardParagraph>
+                    </Card>
+                ))
+            }
         </Wrapper>
         </>
     )

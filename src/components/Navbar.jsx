@@ -27,9 +27,6 @@ text-decoration: none;
 const Navbar = () => {
     const auth = useAuth();
 
-    // const start = auth.token ? (
-    // ) : null
-
     const buttons = auth.token ? (
         <div>
 
@@ -51,7 +48,6 @@ const Navbar = () => {
             <NavContainer>
                 <Logo />
                 <div>
-                    {/* {start} */}
                     {buttons}
                 </div>
             </NavContainer>
