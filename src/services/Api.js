@@ -1,5 +1,5 @@
 
-const API = 'https://autumn-delicate-wilderness.glitch.me/v1';
+const API = `${process.env.REACT_APP_BASE_URL}`;
 console.log(API);
 export class Api {
     static async register(email, password) {
@@ -35,15 +35,17 @@ export class Api {
         return res.json();
     }
 
-    static async addSkill(skill, token) {
+    
+    static async addSkill(skills, token) {
         const res = await fetch(`${API}/content/skills`, {
             method: "POST",
-            headers: { authorization: `Bearer ${token}`,
-            "Content-Type": "application/json"},
-            body: JSON.stringify(skill)
-        });
-        console.log(skill);
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(skills)
+        })
+        console.log(res);
         return res.json();
-        
     }
 }

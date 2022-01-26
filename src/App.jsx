@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider } from './components/AuthProvider';
 import Navbar from "./components/Navbar";
 import { Register } from "./components/pages/Register";
@@ -11,13 +11,15 @@ function App() {
 
     return (
         <AuthProvider>
-            <Navbar />
-            <Routes>
-                <Route path='/register' element={ <Register /> } />
-                <Route path='/login' element={ <Login /> } />
-                <Route path='/' element={<RequireAuth><Home /></RequireAuth>} />
-                <Route path='/add' element={<RequireAuth><AddSkills /></RequireAuth>} />
-            </Routes>
+            <Router>
+                <Navbar />
+                <Routes>
+                    <Route path='/register' element={ <Register /> } />
+                    <Route path='/login' element={ <Login /> } />
+                    <Route path='/' element={<RequireAuth><Home /></RequireAuth>} />
+                    <Route path='/add' element={<RequireAuth><AddSkills /></RequireAuth>} />
+                </Routes>
+            </Router>
         </AuthProvider>
     );
 }

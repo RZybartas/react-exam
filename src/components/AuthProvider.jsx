@@ -2,24 +2,12 @@ import { useState } from "react";
 import { AuthContext } from "./hooks/useAuth";
 import { Api } from "../services/Api";
 
-const getEmail = (token) => { 
-    let email = null;
-
-    if (token) {
-        const tokenPayload = token.split('.')[1];
-        const decodedPayload = atob(tokenPayload);
-        const parsedPayload = JSON.parse(decodedPayload);
-        email = parsedPayload.email;
-    }
-    return email
-};
 
 export const AuthProvider = ({children}) => {
     const token = sessionStorage.getItem('token');
 
     const [state, setState] = useState({
         token,
-        email: getEmail(token),
         error: null,
     });
 
@@ -34,7 +22,7 @@ export const AuthProvider = ({children}) => {
             return {error: res.error}
         }
 
-        setState(({error: null, token: res.token, email: getEmail(res.token)}));
+        setState(({error: null, token: res.token}));
         sessionStorage.setItem('token', res.token);
 
         return {token: res.token};
@@ -44,7 +32,6 @@ export const AuthProvider = ({children}) => {
         setState({
             token: null,
             error: null,
-            email: null,
         });
 
         sessionStorage.removeItem('token');

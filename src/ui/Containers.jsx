@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-width: 280px;
+width: 370px;
 height: 300px;
-margin: 20% auto;
+margin: 10% auto;
 align-items: center;
 background-color: #2980b9;
 border-radius: 20px;
@@ -26,13 +26,12 @@ align-items: center;
 
 export const Wrapper = styled.div`
 width: 80%;
+display: grid;
+grid-template-columns: repeat(3, auto) ;
 margin: 40px auto;
 background-color: #2980b9;
 height: 100vh;
 border-radius: 30px;
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-gap: 10px;
 justify-items: center;
 
 `

@@ -1,29 +1,30 @@
 
-import { useParams } from "react-router-dom"
-import { Api } from "../../services/Api"
-import { Button } from "../../ui/Buttons"
-import { Container, FormContent } from "../../ui/Containers"
-import { Title } from "../../ui/Headings"
-import { Inputs } from "../../ui/Inputs"
-import { Labels } from "../../ui/Labels"
-import { useAuth } from "../hooks/useAuth"
+import { useState } from "react";
+import { useNavigate} from "react-router-dom";
+import { Api } from "../../services/Api";
+import { Button } from "../../ui/Buttons";
+import { Container, FormContent } from "../../ui/Containers";
+import { Message, Title } from "../../ui/Headings";
+import { Inputs } from "../../ui/Inputs";
+import { Labels } from "../../ui/Labels";
+import { TextArea } from "../../ui/TextArea";
+import { useAuth } from "../hooks/useAuth";
 
 
 export const AddSkills = () => {
-    const {id} = useParams();
-    const token = useAuth()
-    console.log(id);
-
+    const {token} = useAuth();
+    const [message, setMessage] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const skills = new FormData(e.target);
             const [title, description] = skills.values();
-            console.log(title, description);
-            const skill = await Api.addSkill({id, title, description}, token)
+            const skill = await Api.addSkill({ title, description}, token)
+            console.log(skill);
             if(skill.err) throw new Error(skill.err)
-            alert('added new skill')
+            setMessage('Skill added succesfully');
+            
         } catch (error) {
             alert(error)
         }
@@ -39,14 +40,13 @@ export const AddSkills = () => {
                 </FormContent>
                 <FormContent>
                     <Labels htmlFor='description'>Description</Labels>
-                    <textarea  name='description' required />
+                    <TextArea  name='description' required />
                 </FormContent>
                 <div style={{display: 'flex', justifyContent: 'center', margin: '10px 0'}}>
                     <Button type='submit'>Add Skill</Button>
                 </div>
-
+                <Message>{message}</Message>
             </form>
-            {/* <div style={{ color: 'red'}}>{error}</div> */}
         </Container>
     )
 }

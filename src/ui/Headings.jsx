@@ -23,8 +23,22 @@ font-size: 25px;
 text-align: center;
 color: #2980b9;
 `
+export const Notification = styled.h5`
+font-size: 30px;
+padding: 20px;
+color: #fff;
+`
 export const CardParagraph = styled.p`
 font-size: 20px;
 text-align: center;
 color: #2980b9;
+`
+export const ErrorMessage = styled.p`
+color: red;
+text-align: center;
+`
+
+export const Message = styled.p`
+color: #fff;
+text-align: center;
 `

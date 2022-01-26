@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Api } from '../../services/Api';
 import { Card } from '../../ui/Card';
 import { Wrapper } from '../../ui/Containers';
-import { CardParagraph, CardTitle, PageTitle } from '../../ui/Headings';
+import { CardParagraph, CardTitle, Notification, PageTitle } from '../../ui/Headings';
 import { useAuth } from '../hooks/useAuth';
 
 export const Home = () => {
@@ -15,8 +15,8 @@ export const Home = () => {
 
     const fetchSkills = async () => {
         const res = await Api.getSkills(token);
-        setSkills(res)
-        console.log(res);
+        setSkills(res);
+    
     };
 
     useEffect(() => {
@@ -24,9 +24,14 @@ export const Home = () => {
     }, []);
 
     if (!skills) {
-        return <Wrapper><div>Loading...</div></Wrapper>
-    } if (skills.length === 0) {
-        return <Wrapper><div>You don't have skills added yet !</div></Wrapper>
+        return <Wrapper>
+            <Notification>Loading...</Notification>
+            </Wrapper>
+    } 
+    if (skills.length === 0) {
+        return <Wrapper>
+            <Notification>You don't have skills added yet !</Notification>
+            </Wrapper>
     }
     return (
         <>

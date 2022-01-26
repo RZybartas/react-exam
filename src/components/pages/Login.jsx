@@ -3,16 +3,17 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../../ui/Buttons';
 import { Container, FormContent } from '../../ui/Containers';
-import { Title } from '../../ui/Headings';
+import { ErrorMessage, Title } from '../../ui/Headings';
 import { Inputs } from '../../ui/Inputs';
 import { Labels } from '../../ui/Labels';
 import { useAuth } from '../hooks/useAuth';
 
 export const Login = () => {
     const navigate = useNavigate();
-    const {login, error} = useAuth();
+    const {login} = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
     const onEmailChange = (e) => {
         setEmail(e.target.value);
     };
@@ -21,11 +22,16 @@ export const Login = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!email || !password) return;
+        if (!email || password.length < 8) {
+            setError('Incorrect data entered')
+        };
         const res = await login(email, password);
         if (res.err) {
+            setError(res.err);
+            console.log(res.err);
             return;
         }
+        setError('null')
         navigate("/");
     }; 
     
@@ -49,7 +55,7 @@ export const Login = () => {
                 </div>
 
             </form>
-            <div style={{ color: 'red'}}>{error}</div>
+            <ErrorMessage>{error}</ErrorMessage>
         </Container>
     )
 };

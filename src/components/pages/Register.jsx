@@ -4,7 +4,7 @@ import { Api } from '../../services/Api';
 import { Button } from '../../ui/Buttons';
 import { Container, FormContent } from '../../ui/Containers';
 
-import { Title } from '../../ui/Headings';
+import { ErrorMessage, Title } from '../../ui/Headings';
 import { Inputs } from '../../ui/Inputs';
 import { Labels } from '../../ui/Labels';
 
@@ -25,7 +25,10 @@ export const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!email || !password) return;
+        if (!email || password.length < 8) {
+            setError('Password must be minimum 8 length or email valid')
+            return
+        };
 
         const res = await Api.register(email, password);
         console.log(res);
@@ -50,7 +53,7 @@ export const Register = () => {
                 </FormContent>
                 <FormContent>
                 <Labels htmlFor='password'>Password:</Labels>
-                <Inputs name='password' onChange={onPasswordChange} required />
+                <Inputs name='password' onChange={onPasswordChange} minLength={8} required />
                 </FormContent>
 
                 <div style={{display: 'flex', justifyContent: 'center', margin: '10px 0'}}>
@@ -58,7 +61,7 @@ export const Register = () => {
                 </div>
 
             </form>
-            <div style={{ color: 'red'}}>{error}</div>
+            <ErrorMessage>{error}</ErrorMessage>
         </Container>
     )
 };
